@@ -8,11 +8,10 @@ const createTuit = (req, res) => {
     newTuit.liked = false;
     tuits.push(newTuit);
     res.json(newTuit);
+}
 
-}
-const findTuits  = (req, res) => {
-    res.json(tuits)
-}
+const findTuits = (req, res) =>
+    res.json(tuits);
 const updateTuit = (req, res) => {
     const tuitdIdToUpdate = req.params.tid;
     const updates = req.body;
@@ -22,12 +21,14 @@ const updateTuit = (req, res) => {
         {...tuits[tuitIndex], ...updates};
     res.sendStatus(200);
 }
+
 const deleteTuit = (req, res) => {
     const tuitdIdToDelete = req.params.tid;
     tuits = tuits.filter((t) =>
         t._id !== tuitdIdToDelete);
     res.sendStatus(200);
 }
+
 
 export default (app) => {
     app.post('/api/tuits', createTuit);
